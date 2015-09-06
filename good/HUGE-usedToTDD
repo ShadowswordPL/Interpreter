@@ -1,0 +1,292 @@
+bool test(bool x){
+  if (x){
+    print true;
+    return true;
+  }
+  else {
+    print false;
+    return false;
+  }
+}
+int x = 3;
+int y = 5;
+skip;
+
+test(15 + 1 == 16);
+
+skip; skip;
+
+test(((true || false) && (false || true)) || false && 3 < 5 && 31 == 31 && 91 > 1);
+test(!(false || true && false || false));
+test(! false && true);
+
+x = 7;
+x = 1 + 1 + 1 + 1 + 1;
+
+test(x == 5);
+{
+  x = 6;
+  int z = 99;
+  
+  test(x == 6 && z == 99);
+
+  int x = 7;
+  test(x == 7 && z == 99);
+}
+
+test(x == 6);
+
+int ifTest = 0;
+if (3 < 5)
+  ifTest = ifTest + 1;
+  if (5 > 5)
+    ifTest = 123;
+  else
+    if (1 < 2)
+      ifTest = ifTest + 1;
+
+test(ifTest == 2);
+
+int i = 0;
+int z = 33;
+while (i < 10){
+  i = i + 1;
+  z = z - 1;
+}
+
+test(z == 23);
+
+int i = 0;
+if (1 == 1)
+  if(2 == 1)
+    while (i < 10){
+      if (1 == 1)
+        if (1 == 2)
+          skip;
+        else {
+          i = i + 1;
+          z = z - 1;
+        }
+    }
+  else
+    if (1 == 1)
+      while (i < 5){
+        if (1 == 1)
+          if (1 == 1)
+            skip;
+        i = i + 1;
+        z = z - 1;
+      }
+test(z == 18);
+
+if (1 == 1)
+  if(1 == 1)
+    while (i < 10)
+    if (1 == 1) {
+      if (1 == 1)
+        while (1 == 2)
+          if (1 == 2)
+            skip;
+      i = i + 1;
+      z = z - 1;
+    }
+
+test(z == 13);
+
+int returnFive(){
+  int x = 3 + 2;
+  return x;
+  return 6;
+  while (true){ print true; }
+}
+
+test(returnFive() == 5);
+
+int minusThree(int x){
+  return x - 3;
+}
+
+test(minusThree(10) == 7);
+
+int div (int a, int b){
+  return a / b;
+}
+
+test(div(16, 3) == 5);
+
+int addFive(int a, int b, int x, int y, int z){
+  a = a + 5;
+  a = a - 5;  
+  return a + b + x + y + z;
+}
+
+test(addFive(1,2,3,4,5) == 15);
+
+int infiniteRecursionButReturn(){
+  return 0;
+  infiniteRecursionButReturn();
+}
+
+int recursionTest(int a){
+  if (a < 10)
+    return recursionTest(a + 1);
+  return a;
+}
+
+test(recursionTest(3) == 10);
+
+int newName = 1;
+
+int addThreeRef(int ref anotherNew){
+  anotherNew = anotherNew + 3;
+  return 0;
+}
+
+addThreeRef(newName);
+test(newName == 4);
+
+bool addOne(int ref x){
+  x = x + 1;
+  return true;
+}
+
+int addOneAsLong(int ref x, int y){
+  if(x < y){  
+    x = x + 1;
+  }
+  else {
+    return 0;
+  }
+  addOneAsLong(x, y);
+  return 0;
+}
+
+int u = 2;
+addOneAsLong(u, 15);
+test(u == 15);
+
+int swap(int ref z, int ref x){
+  int dummy = z;
+  z = x;
+  x = dummy;
+  return 0;
+}
+
+int jeden = 1;
+int dwa = 2;
+swap(jeden, dwa);
+test(jeden == 2 && dwa == 1);
+
+int a = 0;
+int b = 0;
+int c = 0;
+int d = 0;
+int e = 0;
+int f = 0;
+int g = 0;
+
+int addOneToOdd(int ref a, int b, int ref c, int d, int ref e, int f, int ref g){
+  a = a + 1;
+  b = b + 1;
+  c = c + 1;
+  d = d + 1;
+  e = e + 1;
+  f = f + 1;
+  g = g + 1;
+  return 0;
+}
+
+addOneToOdd(a, e, b, f, c, g, d);
+test(a == 1 && b == 1 && c == 1 && d == 1 && e == 0 && f == 0 && g == 0);
+
+
+int sofisticatedRefAndRecursionTest(int ref q, int ref w, int ref e)
+{
+  if(q < w){
+    addOneAsLong(q, w);
+  }
+  if(w < e){
+    addOne(w);
+  }
+  if(q != w || w != e){
+    sofisticatedRefAndRecursionTest(q,w,e);
+  }
+  return q + w + e;
+}
+
+int q = 1;
+int w = 2;
+int e = 10;
+
+test(sofisticatedRefAndRecursionTest(q,w,e) == 30);
+test(q == w && w == e);
+
+int butIWill(int ref x){
+  x = 150;
+  return x;
+}
+
+int iWontDestroyVariable(int x){
+  x = 3;
+  x = 7;
+  x = x + 12345;
+  x = 123;
+  test(x == 123);
+  butIWill(x);
+  test(x == 150);
+  return x;
+  x = 3;
+  x = 7;
+  x = x + 12345;
+}
+
+
+int x = 5;
+test (x == 5);
+iWontDestroyVariable(x);
+test(x==5);
+
+int x = 0;
+for (skip; x < 7; skip){
+  x = x + 1;
+}
+test(x == 7);
+
+for (skip; x < 14; x = x + 1){skip;}
+test(x == 14);
+
+int y = 0;
+int i = 3;
+test(i == 3);
+for (int i = 0; i < 13; i = i + 1){
+  y = y + 1;
+}
+test(i == 3);
+test(y == 13);
+
+for (i = 0; i < 13; i = i + 1){
+  y = y + 1;
+}
+test(i == 13);
+test(y == 13 + 13);
+
+for (i = 0; i < 13; i = i + 1)
+  skip;
+
+int sto = 0;
+for(int i = 0; i < 10; i = i + 1)
+  for(int j = 0; j < 10; j = j + 1)
+    sto = sto + 1;
+test(sto == 100);
+
+int z = 15;
+if (1 == 1)
+  if(1 == 1)
+    for (i = 0; i < 10; i = i + 1)
+      if (1 == 1) {
+        if (1 == 1)
+          for(int i = 0; 1 < 0; skip){skip;}
+        i = i + 1;
+        z = z - 1;
+      }
+test(z == 10);

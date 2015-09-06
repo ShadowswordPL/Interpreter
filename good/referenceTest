@@ -1,0 +1,50 @@
+bool swap(int ref first, int ref second){
+  int dummy = first;
+  first = second;
+  second = dummy;
+  return true;
+}
+
+int a = 17;
+int b = 19;
+
+print a == 17 && b == 19;
+swap(a, b);
+print a == 19 && b == 17;
+
+bool brokenSwap(int ref first, int ref second){
+  int dummy = first;
+  int first = second;
+  int second = dummy;
+  return true;
+}
+
+print a == 19 && b == 17;
+brokenSwap(a, b);
+print a == 19 && b == 17;
+
+bool copyEvenToOdd(int ref odd1, int even1, int ref odd2, int even2){
+  odd1 = even1;
+  odd2 = even2;
+  even1 = odd1;
+  even2 = odd2;
+  return false;
+}
+
+int odd1 = 1;
+int even1 = 10;
+int odd2 = 2;
+int even2 = 20;
+copyEvenToOdd(odd1, even1, odd2, even2);
+print odd1 == 10 && even1 == 10 && odd2 == 20 && even2 == 20;
+
+bool sum(int summand1, int summand2, int ref result){
+  result = summand1 + summand2;
+  return false;
+}
+
+int x = 15;
+int y = 20;
+int z = 0;
+sum(x,y,z);
+print z == 35;

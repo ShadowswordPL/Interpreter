@@ -1,0 +1,11 @@
+Rozwiazanie implementuje jezyk, ktory opisalem w opisie. 
+
+Postanowilem zrezygnowac z mozliwosci umieszczenia calego scope'a w petli for (np. for(int i = 0; i < 10; {i = i + 1; i = i + 1;}))
+poniewaz powodowalo to wzrost przypadkow petli for w gramatyce (przez ify bez elsa juz teraz sa to 4 przypadki), tak wiec dodanie
+tej mozliwosci byloby czasochlonne i nieciekawe.
+
+Zrezygnowalem tez na razie ze statycznego typowania.
+
+Bibliografia:
+http://bnfc.digitalgrammars.com/ (small example)
+http://efxa.org/2014/05/17/techniques-for-resolving-common-grammar-conflicts-in-parsers/ (if conflict)

@@ -1,0 +1,22 @@
+int addTwo(int x, int ref num){
+  num = num + 1;  
+  return x + 2;
+}
+
+int subOne(int x, int ref num){
+  num = num + 1;  
+  return x - 1;
+}
+
+bool workUntil100(int x, int ref num){
+  if (x > 100 || x == 100)
+    return true;
+  x = addTwo(x, num);
+  x = subOne(x, num);
+  workUntil100(x, num);
+  return false;
+}
+
+int num = 0;
+workUntil100(0, num);
+print num == 200;

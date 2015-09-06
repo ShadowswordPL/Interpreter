@@ -1,0 +1,9 @@
+int x(){
+  return 3;
+}
+
+bool x(int ref a, int b){
+  return false;
+}
+
+print x();

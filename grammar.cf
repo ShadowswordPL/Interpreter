@@ -1,0 +1,67 @@
+Prog.           Program         ::=     InstrSet    ;
+
+ISetOne.        InstrSet        ::=     Instr   ;
+ISetMore.       InstrSet        ::=     Instr   InstrSet    ;
+
+IDeclr.         Instr           ::=     Declr   ;
+IInstrM.        Instr           ::=     InstrM  ;
+IInstrU.        Instr           ::=     StmtUnmatch ;
+IInstrSemico.   InstrM          ::=     StmtSemico  ";" ;
+IInstrNoSemico. InstrM          ::=     StmtNoSemico    ;
+ICurlyBracket.  InstrM          ::=     "{" InstrSet "}"    ;
+
+TInt.           Type            ::=     "int"   ;
+TBool.          Type            ::=     "bool"  ;
+
+DVar.           Declr           ::=     Type    Ident   "="     Exp     ";" ;
+DFun.           Declr           ::=     Type    Ident   "("     Args    ")"     Instr;
+Args0.          Args            ::=     ;
+Args1.          Args            ::=     Arg     ;
+Args.           Args            ::=     Arg     ","     Args    ;
+Arg.            Arg             ::=     Type    Ident   ;
+ArgRef.         Arg             ::=     Type    "ref"   Ident   ;
+
+SIf.            StmtUnmatch     ::=     "if"    "("     Exp     ")"  Instr  ;
+SIfEU.          StmtUnmatch     ::=     "if"    "("     Exp     ")"  InstrM  "else"  StmtUnmatch;
+SWhileU.        StmtUnmatch     ::=     "while" "("     Exp     ")"  StmtUnmatch;
+SForStmtU.      StmtUnmatch     ::=     "for"   "("     StmtSemico    ";"   Exp  ";" StmtSemico  ")" StmtUnmatch;
+SForU.          StmtUnmatch    	::=     "for"   "("     Declr   Exp ";" StmtSemico  ")" StmtUnmatch;
+
+SIfE.           StmtNoSemico    ::=     "if"    "("     Exp     ")"  InstrM  "else"  InstrM  ;
+SWhile.         StmtNoSemico    ::=     "while" "("     Exp     ")"  InstrM   ;
+SForStmt.       StmtNoSemico    ::=     "for"   "("     StmtSemico    ";"   Exp  ";" StmtSemico  ")" InstrM;
+SFor.           StmtNoSemico    ::=     "for"   "("     Declr   Exp ";" StmtSemico  ")" InstrM;
+
+SSkip.          StmtSemico      ::=     "skip"  ;
+SAssign.        StmtSemico      ::=     Ident   "="     Exp     ;
+SPrint.         StmtSemico      ::=     "print"         Exp     ;
+SReturn.        StmtSemico      ::=     "return"        Exp     ;
+SExp.           StmtSemico      ::=     Exp;
+
+EAdd.           Exp4            ::=     Exp4    "+"     Exp5    ;
+ESub.           Exp4            ::=     Exp4    "-"     Exp5    ;
+EMul.           Exp5            ::=     Exp5    "*"     Exp6    ;
+EDiv.           Exp5            ::=     Exp5    "/"     Exp6    ;
+EInt.           Exp6            ::=     Integer ;
+
+BOr.            Exp             ::=     Exp     "||"    Exp1     ;
+BAnd.           Exp1            ::=     Exp1    "&&"    Exp2     ;
+BNeg.           Exp2            ::=     "!"     Exp2    ;
+BTrue.          Exp3            ::=     "true";
+BFalse.         Exp3            ::=     "false";
+
+ELess.          Exp3            ::=     Exp3   "<"      Exp4   ;
+EMore.          Exp3            ::=     Exp3   ">"      Exp4   ;
+EEq.            Exp3            ::=     Exp3   "=="     Exp4   ;
+ENeq.           Exp3            ::=     Exp3   "!="     Exp4   ;
+
+EVar.           Exp6            ::=     Ident;
+EFunc.          Exp6            ::=     Ident "(" CallArgs ")"  ;
+
+CallArgs0.      CallArgs        ::=     ;
+CallArgs1.      CallArgs        ::=     CallArg;
+CallArgs.       CallArgs        ::=     CallArg  "," CallArgs;
+CallArg.        CallArg         ::=     Exp   ;
+
+coercions       Exp             6       ;
+

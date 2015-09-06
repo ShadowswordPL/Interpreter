@@ -1,0 +1,30 @@
+bool lEq(int stupidName, int firstNameWasStupidButThisOneIsReallySillyLOL){
+  return stupidName < firstNameWasStupidButThisOneIsReallySillyLOL || firstNameWasStupidButThisOneIsReallySillyLOL == stupidName;
+}
+
+bool sorted(int x, int y, int z){
+  return lEq(x, y) && lEq(y, z);
+}
+
+int median(int a, int b, int c){
+  if(sorted(a, b, c) || sorted(c, b, a)){
+    return b;
+  }
+
+  if(sorted(b, a, c) || sorted(c, a, b)){
+    return a;
+  }
+
+  if(sorted(a, c, b) || sorted(b, c, a)){
+    return c;
+  }
+
+  return 0;
+}
+
+print(median(1,33,100));
+print(median(17,34,50));
+print(median(35,1,44));
+print(median(36,44,1));
+print(median(100,1,37));
+print(median(100,38,14));

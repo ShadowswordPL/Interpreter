@@ -1,0 +1,5 @@
+int x(){
+  return true;
+}
+
+print x();

@@ -1,0 +1,5 @@
+int function(int a, int b, c){
+  return 3;
+}
+
+function();

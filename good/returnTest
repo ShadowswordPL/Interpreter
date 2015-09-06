@@ -1,0 +1,21 @@
+int sum(int augend1, int augend2){
+  return augend1 + augend2;
+}
+
+print sum(100, 1000) == 1100; 
+
+int div(int augend1, int augend2){
+  return augend1 / augend2;
+}
+
+print div(45, 16) == 2;
+
+int firstReturnWorks(){
+  int a = 30;
+  int b = 45;
+  return b - a;
+  return b + a;
+  while(true){skip;}
+}
+
+print firstReturnWorks() == 15;
